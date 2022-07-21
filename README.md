@@ -58,3 +58,33 @@
          void loop()
          { 
          }
+         
+         
+## - Establishing a web Server 
+
+
+         #include <ESP8266WiFi.h>        // Include the Wi-Fi library
+         #include <ESP8266WebServer.h>
+
+         const char* ssid = "ABbkareno Wifi";
+         const char* password = "12345678";  //Enter Password here
+         ESP8266WebServer server(80);
+
+
+        void setup()
+            {
+              Serial.begin(115200);         // Start the Serial communication to send messages to the computer
+              WiFi.mode(WIFI_AP);
+
+              WiFi.softAP(ssid, password);
+  
+              IPAddress myIP = WiFi.softAPIP();
+              Serial.print("AP IP address: ");
+               Serial.println(myIP);
+ 
+             // Starting WEB-server 
+              server.begin();
+               Serial.println("HTTP server started"); 
+           }
+
+void loop() { }
