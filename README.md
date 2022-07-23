@@ -90,6 +90,71 @@
         void loop()
            {
            }
-## - Establishing a web Server and GPS used TinyGPS++
+## - Establishing a web Server Create HTML 
 
+              #include <SoftwareSerial.h>
+              #include <ESP8266WiFi.h>       
+              #include <ESP8266WebServer.h>
+              
+              //Server name and password
+              const char* ssid = "ABbkareno Wifi";
+               const char* password = "12345678";  //Enter Password here
+              ESP8266WebServer server(80);
 
+              String header;
+              
+               void setup() 
+               {
+                 Serial.begin(115200);  
+                 
+                   // Server Start code
+                   WiFi.mode(WIFI_AP);
+                   WiFi.softAP(ssid, password);
+                    IPAddress myIP = WiFi.softAPIP();
+                   Serial.print("AP IP address: ");
+                    Serial.println(myIP);
+                   // Starting WEB-server
+                   server.begin();
+                   Serial.println("HTTP server started");
+                   
+                   void loop() 
+                   {
+                   }
+ 
+ 
+                   String SendHTML() {
+
+                   String value = server.arg("value"); //this lets you access a query param (http://x.x.x.x/action1?value=1)
+                     int number = value.toInt(); 
+                     String s = " <!DOCTYPE html> <html>";
+                     s += "<head><meta name='viewport' content='width=device-width, initial-scale=1'> <title>GPS DATA</title> <style>";
+                     s += "<style>html, body { font-family: Helvetica; display: block; margin: 0px auto; text-align: center;}";
+                     s += ".button { background-color: #209e48; border: none; color: white; padding: 12px 24px;";
+                     s += "text-decoration: none; font-size: 20px; margin: 2px; cursor: pointer;}";
+                     s += ".button2 {background-color: #c20a0a;}";
+                     s += ".textbox {width: 80px; border: 1px solid #333; padding: 16px 20px 0px 24px; background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);}";
+                     s += ".mytext {font-size: 16px; font-weight:bold; font-family:Arial ; text-align: justify;}";
+                      s += "#container {width: 100%; height: 50px; margin-left: 5px; margin-top: 20px; padding: 10px; display: -webkit-flex; -webkit-justify-content: center; display: flex; justify-content: center;} ";
+
+                     s += "a:link {background-color: YELLOW;text-decoration: none;}";
+                     s += "table, th, td </style> </head> <body> <h1  style=";
+                     s += "font-size:300%;";
+                     s += " ALIGN=CENTER> GPS DATA</h1>";
+                     s += "<p ALIGN=CENTER style=""font-size:150%;""";
+                      s += "> <b>Location Details</b></p> <table ALIGN=CENTER style=";
+                     s += "width:50%";
+                      s += "> <tr> <th>Latitude</th>";
+                      s += "<td ALIGN=CENTER >";
+
+                      s += "</td> </tr> <tr> <th>Longitude</th> <td ALIGN=CENTER >";
+
+                      s += "</td> </tr> <tr>  <th>Date</th> <td ALIGN=CENTER >";
+ 
+                       s += "</td></tr> <tr> <th>Time</th> <td ALIGN=CENTER >";
+ 
+                       s += "</td>  </tr> </table> ";
+ 
+
+                       s += "</body> </html>";
+                        return s;
+                         }
