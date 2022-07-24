@@ -1,4 +1,7 @@
 # NodeMCU-ESP8266 
+
+[![Watch the video](https://img.youtube.com/vi/UxpPqVg8Nyc/0.jpg)](https://youtu.be/UxpPqVg8Nyc)
+
 ## - Establishing a Wi-Fi connection
 
      #include <ESP8266WiFi.h>        // Include the Wi-Fi library
